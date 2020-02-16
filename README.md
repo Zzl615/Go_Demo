@@ -1,2 +1,6 @@
-# go-in-algorithm
-Implement some data structure and algorithm with Go
+# Algorithm
+Learning about algorithms and data structures。
+
+
+
+
