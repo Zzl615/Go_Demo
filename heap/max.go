@@ -38,36 +38,38 @@ func (this *MaxHeap) DeleteElem(num int) bool {
 	}
 	this.heap[1], this.heap[this.h_len] = this.heap[this.h_len], this.heap[1]
 	this.h_len--
-	this.heapifyTop(&this.heap, this.h_len)
+	this.heapifyTop(&this.heap, this.h_len, 0)
 	return true
 }
 
 /**
- * buildHeap：
+ * BuildHeap:
  *
  */
-func (this *MaxHeap) BuildHeap(array []int, n int) {
+func (this *MaxHeap) BuildHeap(array []int, n int) *maxHeap {
 	for i := (n - 1) / 2; i >= 0; i-- {
 		this.heapifyTop(array, n, i)
 	}
+	return &array
 }
 
 /**
  * heapifyTop
  */
-func (this *MaxHeap) heapifyTop(array []int, n int, i int) *MaxHeap {
-	for i = n {
-		var maxPos := i
-		if array[2*i+1] > array[i] {
-			maxPos = 2*i+1
-		} 
-		if array[2*i+2] > array[i] {
-			maxPos = 2*i+2
+func (this *MaxHeap) heapifyTop(array []int, n int, i int) *maxHeap {
+	var maxPos = -1
+	var maxParent = (n - 1) / 2
+	for ; maxPos != i; i = maxPos {
+		maxPos := i
+		if i > maxParent && array[2*i+1] > array[i] {
+			maxPos = 2*i + 1
+		}
+		if i > maxParent && array[2*i+2] > array[i] {
+			maxPos = 2*i + 2
 		}
 		if maxPos != i {
 			array[maxPos], array[i] = array[i], array[maxPos]
 		}
-		i ++
 	}
 	return &array
 }
@@ -75,7 +77,7 @@ func (this *MaxHeap) heapifyTop(array []int, n int, i int) *MaxHeap {
 /**
  * heapifyBottom
  */
-func (this *MaxHeap) heapifyBottom(arr []int, k int) *MaxHeap {
+func (this *MaxHeap) heapifyBottom(arr []int, k int) *maxHeap {
 	// for i:= k; i >= 0 && arr[i] > arr[i/2]; i = i/2 {
 	// 	arr[i], arr[i/2] = arr[i/2], arr[i]
 	// }
