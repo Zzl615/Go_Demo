@@ -26,7 +26,7 @@ func (this *MaxHeap) InsertElem(num int) bool {
 	}
 	this.heap[this.h_len] = num
 	this.h_len++
-	this.heap = this.heapifyBottom(this.heap, h_len)
+	this.heap = this.HeapifyBottom(this.heap, h_len)
 }
 
 /**
@@ -38,7 +38,7 @@ func (this *MaxHeap) DeleteElem(num int) bool {
 	}
 	this.heap[1], this.heap[this.h_len] = this.heap[this.h_len], this.heap[1]
 	this.h_len--
-	this.heapifyTop(&this.heap, this.h_len, 0)
+	this.HeapifyTop(&this.heap, this.h_len, 0)
 	return true
 }
 
@@ -46,9 +46,9 @@ func (this *MaxHeap) DeleteElem(num int) bool {
  * BuildHeap:
  *
  */
-func (this *MaxHeap) BuildHeap(array []int, n int) *maxHeap {
+func (this *MaxHeap) BuildHeap(array []int, n int) *maxHeap{
 	for i := (n - 1) / 2; i >= 0; i-- {
-		this.heapifyTop(array, n, i)
+		this.HeapifyTop(array, n, i)
 	}
 	return &array
 }
@@ -56,12 +56,12 @@ func (this *MaxHeap) BuildHeap(array []int, n int) *maxHeap {
 /**
  * heapifyTop
  */
-func (this *MaxHeap) heapifyTop(array []int, n int, i int) *maxHeap {
+func (this *MaxHeap) HeapifyTop(array []int, n int, i int) *maxHeap {
 	var maxPos = -1
-	var maxParent = (n - 1) / 2
+	var maxParent = (n-1)/2 
 	for ; maxPos != i; i = maxPos {
 		maxPos := i
-		if i > maxParent && array[2*i+1] > array[i] {
+		if i > maxParent && array[2*i+1] > array[i] { 
 			maxPos = 2*i + 1
 		}
 		if i > maxParent && array[2*i+2] > array[i] {
@@ -77,9 +77,13 @@ func (this *MaxHeap) heapifyTop(array []int, n int, i int) *maxHeap {
 /**
  * heapifyBottom
  */
-func (this *MaxHeap) heapifyBottom(arr []int, k int) *maxHeap {
-	// for i:= k; i >= 0 && arr[i] > arr[i/2]; i = i/2 {
-	// 	arr[i], arr[i/2] = arr[i/2], arr[i]
-	// }
-	// return arr
+func (this *MaxHeap) HeapifyBottom(arr []int, i int) *maxHeap {
+	for i > 0 && arr[i] > arr[parentPos]{
+		parentPos = (i-1)/2
+		if arr[i] > arr[parentPos] {
+			arr[i], arr[i/2] = arr[i/2], arr[i]
+		}
+		i = parentPos
+	}
+	return &arr
 }
