@@ -10,4 +10,7 @@ Learning about algorithms and data structures。
 
 4. [Go语言实战](https://mp.weixin.qq.com/mp/appmsgalbum?action=getalbum&__biz=MzI3MjU4Njk3Ng==&scene=1&album_id=1362781573485248514&count=3#wechat_redirect)
 
+5. [Standard Go Project Layout](https://github.com/golang-standards/project-layout/blob/master/README_zh.md)
+
+6. [gin框架](https://gin-gonic.com/zh-cn/docs/examples/serving-data-from-reader/)
 
